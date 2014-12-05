@@ -1,6 +1,7 @@
 'use strict';
 var path = require('path');
 var fs = require('fs');
+var isBinaryFile = require('isbinaryfile');
 
 /**
  * Check if the file contents at `filepath` conflict with the `contents` passed to the
@@ -28,7 +29,13 @@ module.exports = function (filepath, contents) {
     contents = new Buffer(contents, 'utf8');
   }
 
+  if (isBinaryFile(path.resolve(filepath))) {
+    console.log("BINARY FILE");
+    console.log("actual.toString('hex').length\t\t= " + actual.toString('hex').length);
+    console.log("contents.toString('hex').length\t\t= " + contents.toString('hex').length);
+  }
+
   // We convert each Buffer contents to an hexadecimal string first, and then compare
   // them with standard `===`. This trick allow to compare binary files contents.
-  return actual.toString('hex') !== contents.toString('hex')
+  return actual.toString('hex') !== contents.toString('hex');
 };

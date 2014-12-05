@@ -19,7 +19,9 @@
     "url": "https://github.com/SBoudrias/detect-conflict/issues"
   },
   "homepage": "https://github.com/SBoudrias/detect-conflict",
-  "dependencies": {},
+  "dependencies": {
+    "isbinaryfile": "^2.0.3"
+  },
   "devDependencies": {
     "mocha": "^1.21.5"
   }
